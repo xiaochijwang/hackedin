@@ -31,6 +31,9 @@
         <activity android:name=".CreateTeamActivity"></activity>
         <activity android:name=".ViewTeamActivity"></activity>
         <activity android:name=".LookupTeamActivity"></activity>
+        <activity android:name=".EditTeamActivity"></activity>
+        <activity android:name=".PeoplesListingActivity"></activity>
+        
     </application>
 
 </manifest>

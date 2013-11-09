@@ -1,20 +1,26 @@
 package com.example.hackedin;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
+import java.util.List;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,10 +53,76 @@ public class ViewTeamActivity extends Activity {
 			final ListView listTeamMembers = (ListView)findViewById(R.id.listTeamMembers);
 			ArrayAdapter<String> aa = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, memberNames);
 			listTeamMembers.setAdapter(aa);
+			
+			if (team.getString("leader_id").equals(getIntent().getExtras().getString("user_id"))) {
+				((Button)findViewById(R.id.buttonEditTeam)).setVisibility(View.VISIBLE);
+				
+				final Button buttonEditTeam = (Button)findViewById(R.id.buttonEditTeam);
+				buttonEditTeam.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						Intent i = new Intent(context, EditTeamActivity.class);
+						Bundle b = new Bundle();
+						b.putString("hackathon_id", getIntent().getExtras().getString("hackathon_id"));
+						b.putString("user_id", getIntent().getExtras().getString("user_id"));
+						b.putString("team_id", getIntent().getExtras().getString("team_id"));
+						i.putExtras(b);
+						startActivity(i);
+					}
+				});
+			}
 		}
 		catch (ParseException e) {
-			alertMessage("Error", "Error retrieving team information", true);
+			finish();
 		}
+		
+		ParseQuery<ParseObject> teamQuery = ParseQuery.getQuery("Team");
+		teamQuery.whereEqualTo("hackathon_id", getIntent().getExtras().getString("hackathon_id"));
+		teamQuery.whereContainsAll("member_ids", Arrays.asList(getIntent().getExtras().getString("user_id")));
+		teamQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> teamList, ParseException e) {
+				if (e == null) {
+					if (teamList.size() == 0)
+						((Button)findViewById(R.id.buttonRequestJoin)).setVisibility(View.VISIBLE);
+					else if (findViewById(R.id.buttonEditTeam).getVisibility() == View.INVISIBLE){
+						final Button buttonLeaveTeam = (Button)findViewById(R.id.buttonLeaveTeam);
+						buttonLeaveTeam.setVisibility(View.VISIBLE);
+						buttonLeaveTeam.setOnClickListener(new View.OnClickListener() {
+							public void onClick(View v) {
+								AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+								alertDialogBuilder.setTitle("Leave Team");
+								alertDialogBuilder.setMessage("Are you sure you want to leave the team?");
+								alertDialogBuilder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int which) {
+										ParseQuery<ParseObject> team = new ParseQuery<ParseObject>("Team");
+										team.getInBackground(getIntent().getExtras().getString("team_id"), new GetCallback<ParseObject>() {
+											public void done(ParseObject team, ParseException e) {
+												List<String> newTeam = team.getList("member_ids");
+												newTeam.remove(getIntent().getExtras().getString("user_id"));
+												team.put("member_ids", newTeam);
+												team.saveInBackground(new SaveCallback() {
+													public void done(ParseException e) {
+														alertMessage("Disbanded", "You have left the team", true);
+													}
+												});
+											}
+										});
+									}
+								});
+								alertDialogBuilder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int which) {
+										dialog.cancel();
+									}
+								});
+								AlertDialog alertDialog = alertDialogBuilder.create();
+								alertDialog.show();
+							}
+						});
+					}
+				}
+				else
+					alertMessage("Error", "Error retrieving team", true);
+			}						
+		});
 	}
 
 	@Override

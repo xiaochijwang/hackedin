@@ -61,7 +61,7 @@
         android:id="@+id/listTeamMembers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/buttonRequestJoin"
         android:layout_below="@+id/textTeamMembers"
         android:layout_centerHorizontal="true"
         android:paddingBottom="75dp" >
@@ -73,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:visibility="invisible"
         android:text="Request to Join" />
     
     <Button
@@ -81,6 +82,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:visibility="invisible"
         android:text="Edit Team" />
+    
+    
+    <Button
+        android:id="@+id/buttonLeaveTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:text="Leave Team" />
     
     </RelativeLayout>

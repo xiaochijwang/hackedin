@@ -46,9 +46,9 @@ public class HackathonInfoActivity extends Activity {
 						public void done(final List<ParseObject> teamList, ParseException e) {
 							if (e == null) {
 								if (teamList.size() == 0)
-									((Button)findViewById(R.id.buttonViewTeam)).setVisibility(View.GONE);
+									((Button)findViewById(R.id.buttonCreateTeam)).setVisibility(View.VISIBLE);
 								else {
-									((Button)findViewById(R.id.buttonCreateTeam)).setVisibility(View.GONE);
+									((Button)findViewById(R.id.buttonViewTeam)).setVisibility(View.VISIBLE);
 
 									final Button buttonViewTeam = (Button)findViewById(R.id.buttonViewTeam);
 									buttonViewTeam.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class HackathonInfoActivity extends Activity {
 								}
 							}
 							else
-								alertMessage("Error", "Error retrieving team" + e.toString(), true);
+								alertMessage("Error", "Error retrieving team", true);
 						}						
 					});
 				}
@@ -129,6 +129,6 @@ public class HackathonInfoActivity extends Activity {
 	}
 	
 	public String dateString(Date date) {
-		return (date.getMonth() + "/" + date.getDate() + "/" + date.getYear());
+		return (date.getMonth() + "/" + date.getDate() + "/" + (1900 + date.getYear()));
 	}
 }
