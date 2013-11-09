@@ -35,8 +35,13 @@ public class MainActivity extends Activity {
 					public void done(ParseUser user, ParseException e) {
 						if (user == null)
 							alertMessage("Invalid Login", "Your e-mail or password is invalid. Please try again or register a new profile.");
-						else
-							alertMessage("Success", "Successful login");
+						else {
+							Intent i = new Intent(context, ChooseHackathonActivity.class);
+							Bundle b = new Bundle();
+							b.putString("user_id", user.getObjectId());
+							i.putExtras(b);
+						    startActivity(i);
+						}
 					}
 				});
 			}

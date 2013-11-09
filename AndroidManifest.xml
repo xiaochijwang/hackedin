@@ -26,6 +26,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".ChooseHackathonActivity"></activity>
+        <activity android:name=".HackathonInfoActivity"></activity>
+        <activity android:name=".CreateTeamActivity"></activity>
+        <activity android:name=".ViewTeamActivity"></activity>
+        <activity android:name=".LookupTeamActivity"></activity>
     </application>
 
 </manifest>

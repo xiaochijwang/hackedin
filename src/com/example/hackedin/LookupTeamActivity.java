@@ -20,38 +20,40 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-public class ChooseHackathonActivity extends Activity {
+public class LookupTeamActivity extends Activity {
 
 	final Context context = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choosehackathon);
+		setContentView(R.layout.activity_lookupteam);
 
-		ParseQuery<ParseObject> query = ParseQuery.getQuery("Hackathon");
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Team");
+		query.whereEqualTo("hackathon_id", getIntent().getExtras().getString("hackathon_id"));
 		query.findInBackground(new FindCallback<ParseObject>() {
-			public void done(final List<ParseObject> hackathonList, ParseException e) {
+			public void done(final List<ParseObject> teamList, ParseException e) {
 				if (e == null) {
-					final ArrayList<String> hackathonNames = new ArrayList<String>();
-					final ListView listChooseHackathon = (ListView)findViewById(R.id.listChooseHackathon);
-					for (ParseObject o : hackathonList)
-						hackathonNames.add(o.getString("name"));
-					ArrayAdapter<String> aa = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, hackathonNames);
-					listChooseHackathon.setAdapter(aa);
-					listChooseHackathon.setOnItemClickListener(new AdapterView.OnItemClickListener() {				
+					final ArrayList<String> teamNames = new ArrayList<String>();
+					final ListView listChooseTeam = (ListView)findViewById(R.id.listChooseTeam);
+					for (ParseObject o : teamList)
+						teamNames.add(o.getString("name") + " (" + o.getList("member_ids").size() + "/" + o.getInt("max_members")+ ")");
+					ArrayAdapter<String> aa = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, teamNames);
+					listChooseTeam.setAdapter(aa);
+					listChooseTeam.setOnItemClickListener(new AdapterView.OnItemClickListener() {				
 						public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
-							Intent i = new Intent(context, HackathonInfoActivity.class);
+							Intent i = new Intent(context, ViewTeamActivity.class);
 							Bundle b = new Bundle();
-							b.putString("hackathon_id", hackathonList.get(position).getObjectId());
+							b.putString("hackathon_id", getIntent().getExtras().getString("hackathon_id"));
 							b.putString("user_id", getIntent().getExtras().getString("user_id"));
+							b.putString("team_id", teamList.get(position).getObjectId());
 							i.putExtras(b);
 							startActivity(i);
 						}
 					});
 				}
 				else
-					alertMessage("Error", "Error retrieving hackathons", true);
+					alertMessage("Error", "Error retrieving teams", true);
 			}
 		});
 	}

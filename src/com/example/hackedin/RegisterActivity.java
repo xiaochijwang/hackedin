@@ -13,6 +13,7 @@ import com.parse.SignUpCallback;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -57,7 +58,7 @@ public class RegisterActivity extends Activity {
 					error += "\nInvalid phone";
 				
 				if (error.length() > 0)
-					alertMessage("Error", "Error creating profile:" + error);
+					alertMessage("Error", "Error creating profile:" + error, false);
 				else {
 					ParseQuery<ParseObject> query = ParseQuery.getQuery("_User");
 					query.whereEqualTo("email", email);
@@ -73,6 +74,7 @@ public class RegisterActivity extends Activity {
 										public void done(ParseException e) {
 											if (e == null) {
 												ParseObject userProfile = new ParseObject("UserProfile");
+												userProfile.put("user_id", user.get("objectId"));
 												userProfile.getRelation("user").add(user);
 												userProfile.put("first_name", firstName);
 												userProfile.put("last_name", lastName);
@@ -83,22 +85,22 @@ public class RegisterActivity extends Activity {
 												userProfile.saveInBackground(new SaveCallback() {
 													public void done(ParseException e) {
 														if (e == null)
-															alertMessage("Success", "Your registration was successful!");
+															alertMessage("Success", "Your registration was successful!", true);
 														else
-															alertMessage("Error", "Error creating user profile");
+															alertMessage("Error", "Error creating user profile", false);
 													}
 												});
 											}
 											else
-												alertMessage("Error", "Error creating user");
+												alertMessage("Error", "Error creating user", false);
 										}
 									});
 								}
 								else
-									alertMessage("Error", "E-mail is already in use");
+									alertMessage("Error", "E-mail is already in use", false);
 							}
 							else
-								alertMessage("Error", "Error querying users");
+								alertMessage("Error", "Error querying users", false);
 						}
 					});
 				}
@@ -113,10 +115,18 @@ public class RegisterActivity extends Activity {
 		return true;
 	}
 	
-	public void alertMessage(String title, String message) {
+	public void alertMessage(String title, String message, final boolean finish) {
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 		alertDialogBuilder.setTitle(title);
 		alertDialogBuilder.setMessage(message);
+		alertDialogBuilder.setNeutralButton("Okay", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				if (finish)
+					finish();
+				else
+					dialog.cancel();
+			}
+		});
 		AlertDialog alertDialog = alertDialogBuilder.create();
 		alertDialog.show();
 	}

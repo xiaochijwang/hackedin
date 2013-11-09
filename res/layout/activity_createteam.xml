@@ -9,44 +9,45 @@
     tools:context=".CreateTeamActivity" >
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/editTeamName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp"
-        android:hint="Team Name"
-        android:ems="10" />
-
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="26dp" 
-    	android:entries="@array/hacktypes"
-        android:prompt="@string/hack_prompt" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="78dp"
-        android:text="Done" />
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Team Name" >
+        <requestFocus />
+    </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTeamMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner1"
+        android:layout_below="@+id/editTeamName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="textMultiLine" 
-        android:hint="Idea Description" />
-    
+        android:hint="Max Members"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/editTeamAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ems="10"
+        android:hint="About the team (project type, goals, etc...) (optional)"
+        android:inputType="textMultiLine"
+        android:maxLines="5" />
+
+    <Button
+        android:id="@+id/buttonTeamCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTeamAbout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Create Team" />
     
     </RelativeLayout>
