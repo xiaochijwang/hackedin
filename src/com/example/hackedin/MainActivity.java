@@ -3,6 +3,7 @@ package com.example.hackedin;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import com.parse.Parse;
 
 public class MainActivity extends Activity {
 
