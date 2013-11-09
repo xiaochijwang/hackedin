@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -35,7 +36,7 @@ public class ViewTeamActivity extends Activity {
 		
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Team");
 		try {
-			ParseObject team = query.get(getIntent().getExtras().getString("team_id"));
+			final ParseObject team = query.get(getIntent().getExtras().getString("team_id"));
 			((TextView)findViewById(R.id.textTeamName)).setText(team.getString("name"));
 			ParseQuery<ParseObject> leaderQuery = ParseQuery.getQuery("UserProfile");
 			leaderQuery.whereEqualTo("user_id", team.getString("leader_id"));
@@ -54,6 +55,15 @@ public class ViewTeamActivity extends Activity {
 			final ListView listTeamMembers = (ListView)findViewById(R.id.listTeamMembers);
 			ArrayAdapter<String> aa = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, memberNames);
 			listTeamMembers.setAdapter(aa);
+			listTeamMembers.setOnItemClickListener(new AdapterView.OnItemClickListener() {				
+				public void onItemClick(AdapterView<?> parentView, View childView, int position, long id) {
+					Intent i = new Intent(context, ViewProfileActivity.class);
+					Bundle b = new Bundle();
+					b.putString("view_user_id", team.getList("member_ids").get(position).toString());
+					i.putExtras(b);
+					startActivity(i);
+				}
+			});
 			
 			if (team.getString("leader_id").equals(getIntent().getExtras().getString("user_id"))) {
 				((Button)findViewById(R.id.buttonEditTeam)).setVisibility(View.VISIBLE);
@@ -82,9 +92,11 @@ public class ViewTeamActivity extends Activity {
 		teamQuery.findInBackground(new FindCallback<ParseObject>() {
 			public void done(List<ParseObject> teamList, ParseException e) {
 				if (e == null) {
-					if (teamList.size() == 0)
-						((Button)findViewById(R.id.buttonRequestJoin)).setVisibility(View.VISIBLE);
-					else if (findViewById(R.id.buttonEditTeam).getVisibility() == View.INVISIBLE){
+					if (teamList.size() == 0) {
+						final Button buttonRequestJoin = (Button)findViewById(R.id.buttonRequestJoin);
+						buttonRequestJoin.setVisibility(View.VISIBLE);
+					}
+					else if (findViewById(R.id.buttonEditTeam).getVisibility() == View.INVISIBLE && teamList.get(0).getObjectId().equals(getIntent().getExtras().getString("team_id"))) {
 						final Button buttonLeaveTeam = (Button)findViewById(R.id.buttonLeaveTeam);
 						buttonLeaveTeam.setVisibility(View.VISIBLE);
 						buttonLeaveTeam.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +135,42 @@ public class ViewTeamActivity extends Activity {
 				else
 					alertMessage("Error", "Error retrieving team", true);
 			}						
+		});
+		
+		final Button buttonRequestJoin = (Button)findViewById(R.id.buttonRequestJoin);
+		buttonRequestJoin.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				try {
+					ParseQuery<ParseObject> teamQuery = ParseQuery.getQuery("Team");
+					final ParseObject team = teamQuery.get(getIntent().getExtras().getString("team_id"));
+					ParseQuery<ParseObject> requestQuery = ParseQuery.getQuery("Request");
+					requestQuery.whereEqualTo("from_user_id", getIntent().getExtras().getString("user_id"));
+					requestQuery.whereEqualTo("to_user_id", team.getString("leader_id"));
+					requestQuery.whereEqualTo("hackathon_id", getIntent().getExtras().getString("hackathon_id"));
+					requestQuery.whereEqualTo("team_id", getIntent().getExtras().getString("team_id"));
+					requestQuery.findInBackground(new FindCallback<ParseObject>() {
+						public void done(List<ParseObject> requests, ParseException e) {
+							if (requests.size() == 0) {
+								ParseObject request = new ParseObject("Request");
+								request.put("from_user_id", getIntent().getExtras().getString("user_id"));
+								request.put("to_user_id", team.getString("leader_id"));
+								request.put("hackathon_id", getIntent().getExtras().getString("hackathon_id"));
+								request.put("team_id", getIntent().getExtras().getString("team_id"));
+								request.saveInBackground(new SaveCallback() {
+									public void done(ParseException e) {
+										alertMessage("Success", "A request has been sent to join the team", true);
+									}
+								});
+							}
+							else
+								alertMessage("Error", "You have already send a request for this team", true);
+						}
+					});
+				}
+				catch (ParseException e) {
+					alertMessage("Error", "Error sending request", true);
+				}
+			}
 		});
 	}
 

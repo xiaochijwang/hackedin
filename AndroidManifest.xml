@@ -33,6 +33,7 @@
         <activity android:name=".LookupTeamActivity"></activity>
         <activity android:name=".EditTeamActivity"></activity>
         <activity android:name=".ViewProfileActivity"></activity>
+        <activity android:name=".ViewRequestActivity"></activity>
         
     </application>
 

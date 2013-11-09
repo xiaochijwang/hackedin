@@ -6,10 +6,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ViewTeamActivity" >
+    tools:context=".ViewProfileActivity" >
 
     <TextView
-        android:id="@+id/textTeamName"
+        android:id="@+id/textProfileName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -18,80 +18,63 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textTeamLeader"
+        android:id="@+id/textProfileSchool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listTeamMembers"
-        android:layout_below="@+id/textTeamName"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textProfileName"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:text="Leader: loading..."
+        android:text="School: loading..."
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <TextView
-        android:id="@+id/textTeamSize"
+        android:id="@+id/textProfileEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listTeamMembers"
-        android:layout_below="@+id/textTeamLeader"
+        android:layout_alignLeft="@+id/textProfileSchool"
+        android:layout_below="@+id/textProfileSchool"
+        android:text="E-mail: loading..."
         android:layout_marginTop="10dp"
-        android:text="Size: loading..."
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <TextView
-        android:id="@+id/textTeamAbout"
+        android:id="@+id/textProfilePhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listTeamMembers"
-        android:layout_below="@+id/textTeamSize"
+        android:layout_alignLeft="@+id/textProfileSchool"
+        android:layout_below="@+id/textProfileEmail"
+        android:text="Phone: loading..."
         android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/textProfileSkills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textProfileSchool"
+        android:layout_below="@+id/textProfilePhone"
+        android:text="Skills: loading..."
+        android:layout_marginTop="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/textProfileAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textProfileSchool"
+        android:layout_below="@+id/textProfileSkills"
         android:text="About: loading..."
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-    
-    <TextView
-        android:id="@+id/textTeamMembers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listTeamMembers"
-        android:layout_below="@+id/textTeamAbout"
         android:layout_marginTop="10dp"
-        android:text="Members:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <ListView
-        android:id="@+id/listTeamMembers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonRequestJoin"
-        android:layout_below="@+id/textTeamMembers"
-        android:layout_centerHorizontal="true"
-        android:paddingBottom="75dp" >
-    </ListView>
     
     <Button
-        android:id="@+id/buttonRequestJoin"
+        android:id="@+id/buttonAcceptRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
-        android:text="Request to Join" />
-    
-    <Button
-        android:id="@+id/buttonEditTeam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:text="Edit Team" />
-    
-    <Button
-        android:id="@+id/buttonLeaveTeam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:text="Leave Team" />
+        android:text="Accept Request" />
     
     </RelativeLayout>

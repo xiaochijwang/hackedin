@@ -98,6 +98,18 @@ public class HackathonInfoActivity extends Activity {
 				startActivity(i);
 			}
 		});
+		
+		final Button buttonViewRequests = (Button)findViewById(R.id.buttonViewRequests);
+		buttonViewRequests.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(context, ViewRequestActivity.class);
+				Bundle b = new Bundle();
+				b.putString("hackathon_id", getIntent().getExtras().getString("hackathon_id"));
+				b.putString("user_id", getIntent().getExtras().getString("user_id"));
+				i.putExtras(b);
+				startActivity(i);
+			}
+		});
 	}
 
 	@Override

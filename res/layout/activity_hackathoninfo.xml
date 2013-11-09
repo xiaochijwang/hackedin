@@ -68,7 +68,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
         android:text="Lookup Teams" />
+    
+    <Button
+        android:id="@+id/buttonViewRequests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonLookupTeam"
+        android:layout_centerHorizontal="true"
+        android:text="View Requests" />
 
 </RelativeLayout>

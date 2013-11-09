@@ -101,6 +101,13 @@ public class EditTeamActivity extends Activity {
 						ParseQuery<ParseObject> team = new ParseQuery<ParseObject>("Team");
 						team.getInBackground(getIntent().getExtras().getString("team_id"), new GetCallback<ParseObject>() {
 							public void done(ParseObject team, ParseException e) {
+								ParseQuery<ParseObject> request = new ParseQuery<ParseObject>("Request");
+								request.whereEqualTo("team_id", getIntent().getExtras().getString("team_id"));
+								try {
+									ParseObject.deleteAllInBackground(request.find(), null);
+								} catch (ParseException pe) {
+									alertMessage("Error", "Error querying requests", false);
+								}
 								team.deleteInBackground();
 								alertMessage("Disbanded", "Your team has been disbanded", true);
 							}
