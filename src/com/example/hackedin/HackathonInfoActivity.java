@@ -153,6 +153,6 @@ public class HackathonInfoActivity extends Activity {
 	}
 	
 	public String dateString(Date date) {
-		return (date.getMonth() + "/" + date.getDate() + "/" + (1900 + date.getYear()));
+		return ((1 + date.getMonth()) + "/" + date.getDate() + "/" + (1900 + date.getYear()));
 	}
 }
