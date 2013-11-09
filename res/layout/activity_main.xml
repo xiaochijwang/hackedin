@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editSigninPassword"
         android:layout_above="@+id/editSigninPassword"
-        android:layout_marginBottom="20dp"        
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="E-mail"
         android:inputType="textEmailAddress" >

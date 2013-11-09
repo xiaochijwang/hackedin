@@ -7,84 +7,90 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".RegisterActivity" >
-
+    
     <EditText
-        android:id="@+id/editSigninPassword"
+        android:id="@+id/editRegisterFirst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_alignLeft="@+id/editRegisterPassword"
+        android:layout_above="@+id/editRegisterLast"
         android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName" >
-        <requestFocus />
-    </EditText>
-
+        android:maxLines="1"
+        android:hint="First Name" />
+    
     <EditText
-        android:id="@+id/editSigninEmail"
+        android:id="@+id/editRegisterLast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editSigninPassword"
-        android:layout_alignRight="@+id/editSigninPassword"
-        android:layout_below="@+id/editSigninPassword"
-        android:layout_marginTop="15dp"
+        android:layout_alignLeft="@+id/editRegisterPassword"
+        android:layout_above="@+id/editRegisterEmail"
+        android:ems="10"
+        android:maxLines="1"
+        android:hint="Last Name" />
+    
+    <EditText
+        android:id="@+id/editRegisterEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editRegisterPassword"
+        android:layout_above="@+id/editRegisterPassword"
         android:ems="10"
         android:hint="E-mail"
-        android:inputType="textEmailAddress" />
-
+        android:maxLines="1" />
+    
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editRegisterPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editSigninEmail"
-        android:layout_alignRight="@+id/editSigninEmail"
-        android:layout_below="@+id/editSigninEmail"
-        android:layout_marginTop="14dp"
+        android:layout_centerInParent="true"
         android:ems="10"
         android:hint="Password"
+        android:maxLines="1"
         android:inputType="textPassword" />
-
+    
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editRegisterConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignRight="@+id/editSigninEmail"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="15dp"
+        android:layout_centerInParent="true"
+        android:layout_alignLeft="@+id/editRegisterPassword"
+        android:layout_below="@+id/editRegisterPassword"
         android:ems="10"
         android:hint="Confirm Password"
+        android:maxLines="1"
         android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_below="@+id/editText3"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:hint="School"
-        android:inputType="text" />
     
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editRegisterSchool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_alignLeft="@+id/editText4"
+        android:layout_centerInParent="true"
+        android:layout_alignLeft="@+id/editRegisterPassword"
+        android:layout_below="@+id/editRegisterConfirm"
         android:ems="10"
-        android:hint="Skills"
-        android:inputType="text" />
+        android:maxLines="1"
+        android:hint="School" />
+    
+    <EditText
+        android:id="@+id/editRegisterPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignLeft="@+id/editRegisterPassword"
+        android:layout_below="@+id/editRegisterSchool"
+        android:ems="10"
+        android:hint="Phone (optional)"
+        android:maxLines="1"
+        android:inputType="phone" />
     
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonRegisterRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText5"
-        android:text="Done" />
+        android:layout_alignLeft="@+id/editRegisterPassword"
+        android:layout_alignRight="@+id/editRegisterPassword"
+        android:layout_below="@+id/editRegisterPhone"
+        android:layout_marginTop="5dp"
+        android:text="Register" />
 
 </RelativeLayout>
