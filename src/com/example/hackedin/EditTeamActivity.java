@@ -27,7 +27,7 @@ public class EditTeamActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editteam);
-
+		
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Team");
 		query.getInBackground(getIntent().getExtras().getString("team_id"), new GetCallback<ParseObject>() {
 			public void done(ParseObject team, ParseException e) {
@@ -59,7 +59,7 @@ public class EditTeamActivity extends Activity {
 					query.findInBackground(new FindCallback<ParseObject>() {
 						public void done(List<ParseObject> teamList, ParseException e) {
 							if (e == null) {
-								if (teamList.size() == 0) {
+								if (teamList.size() == 0 || teamList.get(0).getObjectId().equals(getIntent().getExtras().getString("team_id"))) {
 									ParseQuery<ParseObject> query = ParseQuery.getQuery("Team");
 									try {
 										ParseObject team = query.get(getIntent().getExtras().getString("team_id"));

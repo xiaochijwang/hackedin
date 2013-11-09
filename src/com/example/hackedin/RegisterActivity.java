@@ -74,7 +74,7 @@ public class RegisterActivity extends Activity {
 										public void done(ParseException e) {
 											if (e == null) {
 												ParseObject userProfile = new ParseObject("UserProfile");
-												userProfile.put("user_id", user.get("objectId"));
+												userProfile.put("user_id", user.getObjectId());
 												userProfile.getRelation("user").add(user);
 												userProfile.put("first_name", firstName);
 												userProfile.put("last_name", lastName);

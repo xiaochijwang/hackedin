@@ -45,8 +45,9 @@ public class HackathonInfoActivity extends Activity {
 					query.findInBackground(new FindCallback<ParseObject>() {
 						public void done(final List<ParseObject> teamList, ParseException e) {
 							if (e == null) {
-								if (teamList.size() == 0)
+								if (teamList.size() == 0) {
 									((Button)findViewById(R.id.buttonCreateTeam)).setVisibility(View.VISIBLE);
+								}
 								else {
 									((Button)findViewById(R.id.buttonViewTeam)).setVisibility(View.VISIBLE);
 

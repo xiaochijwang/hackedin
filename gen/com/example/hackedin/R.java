@@ -29,17 +29,16 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f09002e;
-        public static final int button1=0x7f090024;
-        public static final int button2=0x7f090023;
+        public static final int button1=0x7f090022;
+        public static final int button2=0x7f090021;
         public static final int buttonCreateTeam=0x7f09000f;
-        public static final int buttonEditTeam=0x7f09002c;
-        public static final int buttonLeaveTeam=0x7f09002d;
-        public static final int buttonLookupPeople=0x7f090012;
+        public static final int buttonEditTeam=0x7f09002a;
+        public static final int buttonLeaveTeam=0x7f09002b;
         public static final int buttonLookupTeam=0x7f090010;
-        public static final int buttonRegisterRegister=0x7f090022;
-        public static final int buttonRequestJoin=0x7f09002b;
-        public static final int buttonSigninLogin=0x7f090017;
-        public static final int buttonSigninRegister=0x7f090018;
+        public static final int buttonRegisterRegister=0x7f090020;
+        public static final int buttonRequestJoin=0x7f090029;
+        public static final int buttonSigninLogin=0x7f090016;
+        public static final int buttonSigninRegister=0x7f090017;
         public static final int buttonTeamCreate=0x7f090005;
         public static final int buttonTeamDisband=0x7f09000a;
         public static final int buttonTeamSave=0x7f090009;
@@ -47,34 +46,35 @@ public final class R {
         public static final int editEditTeamAbout=0x7f090008;
         public static final int editEditTeamMax=0x7f090007;
         public static final int editEditTeamName=0x7f090006;
-        public static final int editRegisterConfirm=0x7f09001f;
-        public static final int editRegisterEmail=0x7f09001e;
-        public static final int editRegisterFirst=0x7f09001b;
-        public static final int editRegisterLast=0x7f09001d;
-        public static final int editRegisterPassword=0x7f09001c;
-        public static final int editRegisterPhone=0x7f090021;
-        public static final int editRegisterSchool=0x7f090020;
-        public static final int editSigninEmail=0x7f090015;
-        public static final int editSigninPassword=0x7f090016;
+        public static final int editRegisterConfirm=0x7f09001d;
+        public static final int editRegisterEmail=0x7f09001c;
+        public static final int editRegisterFirst=0x7f090019;
+        public static final int editRegisterLast=0x7f09001b;
+        public static final int editRegisterPassword=0x7f09001a;
+        public static final int editRegisterPhone=0x7f09001f;
+        public static final int editRegisterSchool=0x7f09001e;
+        public static final int editSigninEmail=0x7f090014;
+        public static final int editSigninPassword=0x7f090015;
         public static final int editTeamAbout=0x7f090004;
         public static final int editTeamMax=0x7f090003;
         public static final int editTeamName=0x7f090002;
-        public static final int imageView1=0x7f090019;
+        public static final int imageView1=0x7f090018;
         public static final int listChooseHackathon=0x7f090001;
-        public static final int listChooseTeam=0x7f090014;
-        public static final int listTeamMembers=0x7f090027;
+        public static final int listChooseTeam=0x7f090013;
+        public static final int listTeamMembers=0x7f090025;
         public static final int textChooseHackathon=0x7f090000;
-        public static final int textChoosePerson=0x7f09001a;
-        public static final int textChooseTeam=0x7f090013;
+        public static final int textChooseTeam=0x7f090012;
         public static final int textHackathonDate=0x7f09000c;
         public static final int textHackathonLocation=0x7f09000d;
         public static final int textHackathonName=0x7f09000b;
         public static final int textHackathonWebsite=0x7f09000e;
-        public static final int textTeamAbout=0x7f090029;
-        public static final int textTeamLeader=0x7f090026;
-        public static final int textTeamMembers=0x7f09002a;
-        public static final int textTeamName=0x7f090025;
-        public static final int textTeamSize=0x7f090028;
+        public static final int textProfileName=0x7f09002c;
+        public static final int textProfileSchool=0x7f09002d;
+        public static final int textTeamAbout=0x7f090027;
+        public static final int textTeamLeader=0x7f090024;
+        public static final int textTeamMembers=0x7f090028;
+        public static final int textTeamName=0x7f090023;
+        public static final int textTeamSize=0x7f090026;
     }
     public static final class layout {
         public static final int activity_choosehackathon=0x7f030000;
@@ -83,9 +83,9 @@ public final class R {
         public static final int activity_hackathoninfo=0x7f030003;
         public static final int activity_lookupteam=0x7f030004;
         public static final int activity_main=0x7f030005;
-        public static final int activity_peopleslisting=0x7f030006;
-        public static final int activity_register=0x7f030007;
-        public static final int activity_team=0x7f030008;
+        public static final int activity_register=0x7f030006;
+        public static final int activity_team=0x7f030007;
+        public static final int activity_viewprofile=0x7f030008;
         public static final int activity_viewteam=0x7f030009;
     }
     public static final class menu {

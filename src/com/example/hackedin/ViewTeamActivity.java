@@ -44,12 +44,13 @@ public class ViewTeamActivity extends Activity {
 			((TextView)findViewById(R.id.textTeamAbout)).setText("About: " + team.getString("about"));
 			((TextView)findViewById(R.id.textTeamSize)).setText("Size: " + team.getList("member_ids").size() + "/" + team.getInt("max_members"));
 			final ArrayList<String> memberNames = new ArrayList<String>();
-			for (Object member_id : team.getList("member_ids")) {
-				ParseQuery<ParseObject> memberQuery = ParseQuery.getQuery("UserProfile");
-				memberQuery.whereEqualTo("user_id", (String)member_id);
-				ParseObject memberProfile = memberQuery.getFirst();
-				memberNames.add(memberProfile.getString("first_name") + " " + memberProfile.getString("last_name"));
-			}
+			if (team.getList("member_ids") != null)
+				for (Object member_id : team.getList("member_ids")) {
+					ParseQuery<ParseObject> memberQuery = ParseQuery.getQuery("UserProfile");
+					memberQuery.whereEqualTo("user_id", (String)member_id);
+					ParseObject memberProfile = memberQuery.getFirst();
+					memberNames.add(memberProfile.getString("first_name") + " " + memberProfile.getString("last_name"));
+				}
 			final ListView listTeamMembers = (ListView)findViewById(R.id.listTeamMembers);
 			ArrayAdapter<String> aa = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, memberNames);
 			listTeamMembers.setAdapter(aa);
