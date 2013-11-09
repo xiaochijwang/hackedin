@@ -34,6 +34,7 @@
         <activity android:name=".EditTeamActivity"></activity>
         <activity android:name=".ViewProfileActivity"></activity>
         <activity android:name=".ViewRequestActivity"></activity>
+        <activity android:name=".EditProfileActivity"></activity>
         
     </application>
 

@@ -110,6 +110,17 @@ public class HackathonInfoActivity extends Activity {
 				startActivity(i);
 			}
 		});
+		
+		final Button buttonEditProfile = (Button)findViewById(R.id.buttonEditProfile);
+		buttonEditProfile.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(context, EditProfileActivity.class);
+				Bundle b = new Bundle();
+				b.putString("user_id", getIntent().getExtras().getString("user_id"));
+				i.putExtras(b);
+				startActivity(i);
+			}
+		});
 	}
 
 	@Override
