@@ -32,15 +32,17 @@
 
     <Button
         android:id="@+id/buttonSigninLogin"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editSigninPassword"
         android:layout_alignRight="@+id/editSigninPassword"
         android:layout_below="@+id/editSigninPassword"
         android:layout_marginTop="5dp"
         android:text="Log In" />
-
+	
     <Button
         android:id="@+id/buttonSigninRegister"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editSigninPassword"
         android:layout_alignRight="@+id/editSigninPassword"
